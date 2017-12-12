@@ -33,6 +33,46 @@ fs.readFile(path.resolve(process.cwd(), 'config.xml'), function (err, data) {
           console.log(PLUGIN_NAME, ": WARN: no plugins found");
           return;
         }
+
+/*
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
+    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.businesstechpro.butler" />
+        <variable name="ANDROID_SCHEME" value="com.businesstechpro.butler" />
+        <variable name="ANDROID_HOST" value="butlerservice-sandbox.auth0.com" />
+        <variable name="ANDROID_PATHPREFIX" value="/cordova/com.businesstechpro.butler/callback" />
+    </plugin>
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-geolocation" spec="^3.0.0">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Butler uses your location for ordering and delivery." />
+    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDB2KCdax528ro2sxkXAPLMYVOu8r_cZ3s" />
+        <variable name="API_KEY_FOR_ANDROID_JS" value="AIzaSyB1Lr2CnY-suMIPlgorGwMemtHu8a49A3g" />
+    </plugin>
+    <plugin name="cordova-plugin-mauron85-background-geolocation" spec="https://github.com/bradrust/cordova-plugin-background-geolocation/tarball/master" />
+    <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
+    <plugin name="cordova-plugin-network-information" spec="^1.3.4" />
+    <plugin name="cordova-plugin-safariviewcontroller" spec="^1.4.7" />
+    <plugin name="cordova-plugin-settings-hook" spec="^0.2.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova.plugins.diagnostic" spec="^3.7.1" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.0.4" />
+    <plugin name="cordova-android-support-gradle-release" spec="https://github.com/bradrust/cordova-android-support-gradle-release/tarball/master">
+        <variable name="ANDROID_SUPPORT_VERSION" value="26.+" />
+    </plugin>
+ */
+
+      console.log(PLUGIN_NAME, ": INFO: ", result);
+      console.log(PLUGIN_NAME, ": INFO: ", result.widget);
+      console.log(PLUGIN_NAME, ": INFO: ", result.widget.plugin);
+
         for (var n = 0, len = plugins.length; n < len; n++) {
             var plugin = plugins[n];
             console.log(PLUGIN_NAME, ": INFO: " + plugin.$.name);
