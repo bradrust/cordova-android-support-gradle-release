@@ -5,22 +5,37 @@ try{
     var path = require('path');
     var parser = require('xml2js');
 }catch(e){
+  console.log("having trouble with dependencies")
     throw PLUGIN_NAME + ": Failed to load dependencies. If using cordova@6 CLI, ensure this plugin is installed with the --fetch option: " + e.message;
 }
 
 const GRADLE_FILENAME = path.resolve(process.cwd(), 'platforms', 'android', 'build.gradle');
 const PACKAGE_PATTERN = /(compile "com.android.support:[^:]+:)([^"]+)"/;
 
+console.log("configuration ", GRADLE_FILENAME)
+console.log("configuration ", PACKAGE_PATTERN)
+
 // 1. Parse cordova.xml file and fetch this plugin's <variable name="ANDROID_SUPPORT_VERSION" />
 fs.readFile(path.resolve(process.cwd(), 'config.xml'), function (err, data) {
+
+  if (err) {
+    console.log("read config.xml ERROR ", err)
+  } else {
+    console.log("read config.xml ", data)
+  }
+
     var json = parser.parseString(data, function (err, result) {
         if (err) {
             return console.log(PLUGIN_NAME, ": ERROR: ", err);
         }
         var plugins = result.widget.plugin;
-        if(!plugins || plugins.length === 0) return;
+        if(!plugins || plugins.length === 0) {
+          console.log(PLUGIN_NAME, ": WARN: no plugins found");
+          return;
+        }
         for (var n = 0, len = plugins.length; n < len; n++) {
             var plugin = plugins[n];
+            console.log(PLUGIN_NAME, ": INFO: " + plugin.$.name);
             if (plugin.$.name === PLUGIN_NAME) {
                 if (!plugin.variable || plugin.variable.length === 0) {
                     return console.log(PLUGIN_NAME, ' Failed to find <variable name="ANDROID_SUPPORT_VERSION" /> in config.xml');
